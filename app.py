@@ -106,7 +106,6 @@ def minimax(state, depth, player):
     return best
 
 def computer_turn(game_board: list) -> list:
-    print('i am listening')
     board = game_board
     depth = len(empty_cells(board))  #number of empty cells
 
@@ -131,12 +130,11 @@ def main(game_board: list) -> list:
     when the board is passed as [[0,0,0],[0,0,0],[0,0,0]], this means human has 
     not played and computer needs to play first.
     """
-    print('i am here')
 
     if len(empty_cells(game_board)) == 0: # if the board does not have any empty spaces, just return the board as is
         return game_board
 
-    computer_turn(game_board) # otherwise computer will play
+    return computer_turn(game_board) # otherwise computer will play
 
 @app.route("/", methods=['GET'])
 def index():
@@ -154,11 +152,9 @@ def index():
 
     board = list(divide_to_chunks(board, 3))
 
-    print('nnnnnnn', board)
-
     game = main(board)
 
-    print('ddddddd', game)
+    print('gmae', game)
 
     game_results = change_to_string(game)
 
@@ -180,14 +176,14 @@ def divide_to_chunks(j,n):
         yield l[i:i + n]
 
 def change_back(x):
-      for k,v in enumerate(x): 
+    for k,v in enumerate(x): 
         if v == 1:
             x[k] = 'o'
         elif v == -1:
             x[k] = 'x'
         elif v == 0:
             x[k] = ''
-        return x
+    return x
 
 def change_to_string(t):
     flat_list = [item for sublist in t for item in sublist]
