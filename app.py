@@ -110,7 +110,7 @@ def computer_turn(game_board: list) -> list:
     depth = len(empty_cells(board))  #number of empty cells
 
     if depth == 0 or game_over(board): #if there isnt any, end game
-        return
+        return BadRequest()
 
     if depth == 9: # if the board has not been played...
         x = choice([0, 1, 2]) # randomly choose from the three ints and set
@@ -122,7 +122,8 @@ def computer_turn(game_board: list) -> list:
     h = set_move(x, y, COMP, game_board) # to the gameboard, set the choices
 
     if h == True:
-        return game_board
+        return board
+
 
 def main(game_board: list) -> list:
     """
@@ -154,11 +155,10 @@ def index():
 
     game = main(board)
 
-    print('gmae', game)
-
-    game_results = change_to_string(game)
-
-    return game_results
+    if isinstance(game, list):
+        game_results = change_to_string(game)
+        return game_results
+    return game
 
 def change_to_nums(list_items):
     for k,v in enumerate(list_items):

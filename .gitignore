@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 fx.py
 .vscode/
+.DS_Store
+code.tgz
